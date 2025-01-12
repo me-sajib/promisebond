@@ -6,6 +6,7 @@ import Story from "../../components/home/Story";
 import HowBondWork from "../../components/home/HowBondWork";
 import TopCreator from "../../components/home/TopCreator";
 import { Heart, Search, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	// Real categories based on promise bond types
@@ -226,14 +227,18 @@ const Home = () => {
 						<h2 className="text-[24px] text-black font-bold mb-4 lg:mb-0">
 							Latest Promise Bonds
 						</h2>
-						<button className="text-[#1dbf73] text-[16px] font-semibold hover:underline">
+						<Link
+							to="/all-promise-bonds"
+							className="text-[#1dbf73] text-[16px] font-semibold hover:underline"
+						>
 							See All
-						</button>
+						</Link>
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 						{popularBonds.map((bond, index) => (
-							<div
+							<Link
+								to={`/bonds/${index}`}
 								key={index}
 								className="bg-white rounded-[4px] overflow-hidden group cursor-pointer"
 							>
@@ -291,7 +296,7 @@ const Home = () => {
 										</div>
 									</div>
 								</div>
-							</div>
+							</Link>
 						))}
 					</div>
 				</div>

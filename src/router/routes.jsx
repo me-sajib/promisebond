@@ -1,12 +1,11 @@
 import Products from "../components/admin/products/Products";
+import AllBonds from "../components/home/AllPromise";
 import HowItWorks from "../components/layout/howItWork";
 import NotMatch from "../components/notMatch/NotMatch";
 import AuthGuard from "../context/AuthGuard";
 import About from "../pages/about/About";
 import AdminDashboard from "../pages/admin/dashboard/Dashboard";
-import Cart from "../pages/cart/Cart";
-import Checkout from "../pages/checkout/Checkout";
-import Contact from "../pages/contact/Contact";
+import BondDetails from "../pages/bondDetails/BondDetails";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import AccountDetail from "../pages/myAccount/accountDetails/AccountDetail";
@@ -16,7 +15,6 @@ import Dashboard from "../pages/myAccount/dashboard/Dashboard";
 import Download from "../pages/myAccount/download/Download";
 import Order from "../pages/myAccount/order/Order";
 import Register from "../pages/register/Register";
-import Shop from "../pages/shop/Shop";
 
 const publicRoute = [
     {
@@ -32,21 +30,10 @@ const publicRoute = [
         element: <HowItWorks />
     },
     {
-        path: "/contact",
-        element: <Contact />
+        path: "/all-promise-bonds",
+        element: <AllBonds />
     },
-    {
-        path: "/shop",
-        element: <Shop />
-    },
-    {
-        path: "/checkout",
-        element: <Checkout />
-    },
-    {
-        path: "/cart",
-        element: <Cart />
-    },
+    { path: "/bonds/:id", element: <BondDetails /> },
     {
         path: "/login",
         element: <Login />
@@ -63,12 +50,7 @@ const publicRoute = [
 
 const loggedInRoutes = [
     { path: "/dashboard", element: <Dashboard /> },
-    { path: "/products", element: <Products /> },
-    { path: "/orders", element: <Order /> },
-    { path: "/downloads", element: <Download /> },
-    { path: "/address", element: <Address /> },
-    { path: "/account-details", element: <AccountDetail /> },
-    { path: "/change-password", element: <ChangePassword /> },
+
 ];
 
 const adminRoute = [
