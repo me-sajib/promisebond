@@ -8,10 +8,6 @@ import Home from "../pages/home/Home";
 import MyAccount from "../pages/myAccount/MyAccount";
 
 import Replace from "../pages/replace/Replace";
-import Download from "../pages/myAccount/download/Download";
-import Address from "../pages/myAccount/address/Address";
-import AccountDetail from "../pages/myAccount/accountDetails/AccountDetail";
-import ChangePassword from "../pages/myAccount/changePassword/ChangePassword";
 import Login from "../pages/login/Login";
 import Register from "../pages/register/Register";
 import Products from "../components/admin/products/Products";
@@ -26,16 +22,8 @@ const publicRoute = [
         element: <Home />
       },
       {
-        path: "/about-us",
+        path: "/about",
         element: <About />
-      },
-      {
-        path: "/replace-rule",
-        element: <Replace />
-      },
-      {
-        path: "/contact",
-        element: <Contact />
       },
       {
         path: "/login",

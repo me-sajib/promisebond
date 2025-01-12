@@ -1,72 +1,45 @@
-import React from 'react'
-import "./css/dashboard.css"
-import Header from '../../../components/admin/Header'
-import SideBar from '../../../components/admin/SideBar'
+import { useState, useEffect } from 'react'
+import IssuerDashboard from '../components/IssuerDashboard'
+import AdminDashboard from '../components/AdminDashboard'
+import BuyerDashboard from '../components/BuyerDashboard'
+import { getCurrentUser, setCurrentUser, clearCurrentUser } from '../../../hooks/UserManagement';
+export default function DashboardPage() {
+	const userStor = localStorage.getItem('currentUser');
+	const users = JSON.parse(userStor);
+	const [currentUser, setCurrentUserState] = useState(null);
 
-export default function Dashboard() {
+	useEffect(() => {
+		if (users) {
+			setCurrentUserState(users);
+		} else {
+			window.location.href = '/';
+		}
+	}, []);
+
+	const handleLogout = () => {
+		setCurrentUserState(null);
+		localStorage.removeItem('currentUser');
+		window.location.href = '/';
+	};
+
 	return (
-		<>
-			<Header />
-			<div class="container-fluid">
-				<div class="row">
-					<SideBar />
-					<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-						<div
-							class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-						>
-							<h1 class="h2">Dashboard</h1>
-							<div class="btn-toolbar mb-2 mb-md-0">
-								<div class="btn-group me-2">
-									<button type="button" class="btn btn-sm btn-outline-secondary">
-										Share
-									</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary">
-										Export
-									</button>
-								</div>
-								<button
-									type="button"
-									class="btn btn-sm btn-outline-secondary dropdown-toggle"
-								>
-									<span data-feather="calendar" class="align-text-bottom"></span>
-									This week
-								</button>
-							</div>
-						</div>
-
-						<h2>Section title</h2>
-						<div class="table-responsive">
-							<table class="table table-striped table-sm">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
-										<th scope="col">Header</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1,001</td>
-										<td>random</td>
-										<td>data</td>
-										<td>placeholder</td>
-										<td>text</td>
-									</tr>
-									<tr>
-										<td>1,002</td>
-										<td>placeholder</td>
-										<td>irrelevant</td>
-										<td>visual</td>
-										<td>layout</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</main>
+		<div>
+			<div className="mb-4 p-4 bg-gray-100 flex justify-between items-center">
+				<div>
+					<span className="font-bold">Current User: </span>
+					{currentUser && currentUser?.name + ' (' + currentUser?.role + ')'}
 				</div>
+				<button
+					onClick={handleLogout}
+					className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+				>
+					Logout
+				</button>
 			</div>
-		</>
+			{currentUser?.role === 'issuer' && <IssuerDashboard userId={currentUser?.id} />}
+			{currentUser?.role === 'admin' && <AdminDashboard userId={currentUser?.id} />}
+			{currentUser?.role === 'buyer' && <BuyerDashboard userId={currentUser?.id} />}
+		</div>
 	)
 }
+

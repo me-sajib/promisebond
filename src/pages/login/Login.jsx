@@ -1,98 +1,142 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"
-import { FaRegEyeSlash } from "react-icons/fa";
-import { FiEye } from "react-icons/fi";
+import React, { useState } from "react";
+import { Mail, Lock } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
-import "./Login.css"
-const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
+export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handlePayment = async (e) => {
-    e.preventDefault();
-    const address_wallet = 'TXJr6svJ3quRJEF7dJ7DD7q53fZGqoA4EG'; // Replace with your Tron wallet address
-    const token_wallet = '06abf795xb21b7657ffd259453903e26'; // Replace with your token wallet
-    const request_id = new Date().getTime(); // Generate a unique request ID
-    const callback = 'http://localhost:5050/callback_crypto';
-    const return_url = 'https://localhost:5050/history_crypto';
+  const onSubmit = (data) => {
+    const { email, password } = data;
 
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    };
+    // Get users from localStorage
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    const url = `https://fpayment.co/api/AddInvoice.php?address_wallet=${encodeURIComponent(address_wallet)}&token_wallet=${encodeURIComponent(token_wallet)}&name=${encodeURIComponent('Recharge Website FPAYMENT.CO')}&description=${encodeURIComponent('klsadjkl')}&amount=${encodeURIComponent(1)}&request_id=${encodeURIComponent(request_id)}&callback=${encodeURIComponent(callback)}&return_url=${encodeURIComponent(return_url)}`;
+    // Find user with matching email and password
+    const user = users.find(u => u.email === email && u.password === password);
 
-    try {
-      const response = await fetch(url, requestOptions);
-      const result = await response.text();
-      console.log(result);
-      // You can parse the result and redirect to return_url if needed
-      window.location.href = return_url;
-    } catch (error) {
-      console.error('Error:', error);
+    if (user) {
+      // Set current user
+      localStorage.setItem('currentUser', JSON.stringify(user));
+
+      // Redirect to dashboard
+      window.location.replace('/dashboard');
+    } else {
+      alert('Invalid email or password');
     }
   };
 
 
+
   return (
-    <>
-      <div className="login py-5">
-        <div class="container login-container">
-          <div class="d-flex gap-4 w-full">
-            <div className="w-100">
-              <h3 className="text-sm">Login</h3>
-              <div class="w-100 border mt-4 p-4">
-                <form className="d-flex flex-column gap-4">
-                  <div class="form-group">
-                    <label for="email" className="text-md">Email address <span class="text-danger">*</span></label>
-                    <input id="email" type="text" class="form-control py-3 px-3" placeholder="mail@example.com" />
-                  </div>
-                  <div class="form-group">
-                    <label for="password" className="text-md">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control py-3 px-3" placeholder="********" />
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg">Login </button>
-                    <br />
-                    <a href="#" class="btn btn-link">Lost your password?</a>
-                  </div>
-                  <div class="form-group">
-                  </div>
-                </form>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
+          <p className="mt-2 text-gray-600">
+            Sign in to your <strong>PromiseBond</strong> account
+          </p>
+        </div>
+
+        <div className="bg-white p-8 rounded-xl shadow-md">
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <div className="mt-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="email"
+                  className="pl-10 py-2 block w-full border border-gray-500 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Enter your email"
+                  {...register("email", { required: true })}
+                />
+              </div>
+              {errors.email && (
+                <p className="text-red-500 mt-2">Email is required</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <div className="mt-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="password"
+                  className="pl-10 py-2 block w-full border border-gray-500 rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Enter your password"
+                  {...register("password", { required: true })}
+                />
+              </div>
+              {errors.password && (
+                <p className="text-red-500 mt-2">Password is required</p>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded"
+                />
+                <label className="ml-2 block text-sm text-gray-700">
+                  Remember me
+                </label>
+              </div>
+              <Link
+                to="/forget_password"
+                className="text-sm text-primary-500 hover:text-primary-600"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            {/*  demo login button, admin, issuer, buyer */}
+            <div className="flex items-center justify-between w-[70%]">
+              <div className="flex items-center ">
+                <button onClick={() => { window.location.replace('/dashboard'); localStorage.setItem('currentUser', JSON.stringify({ id: 3738382, name: "Andy", email: "1@1.com", password: "123456", role: 'admin' })); }} className="bg-primary-500 text-white px-3 py-1 rounded">Admin</button>
+              </div>
+              <div className="flex items-center">
+                <button onClick={() => { window.location.replace('/dashboard'); localStorage.setItem('currentUser', JSON.stringify({ id: 3993939, name: "John", email: "2@2.com", password: "123456", role: 'issuer' })); }} className="bg-primary-400 text-white px-3 py-1 rounded">Issuer</button>
+              </div>
+              <div className="flex items-center">
+                <button onClick={() => { window.location.replace('/dashboard'); localStorage.setItem('currentUser', JSON.stringify({ id: 7474747, name: "Sarah", email: "3@3.com", password: "123456", role: 'buyer' })); }} className="bg-primary-300 text-white px-3 py-1 rounded">Buyer</button>
               </div>
             </div>
 
-            <div className="w-100">
-              <h3>Register</h3>
-              <div class="w-100 border mt-4 p-4">
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#1dbf73] hover:bg-[#1dbf73] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1dbf73]"
+            >
+              Sign in
+            </button>
+          </form>
 
-                <form className="d-flex flex-column gap-4">
-                  <div class="form-group">
-                    <label for="email" className="text-md">Email address <span class="text-danger">*</span></label>
-                    <input id="email" type="text" class="form-control py-3 px-3" placeholder="mail@example.com" />
-                  </div>
-                  <div class="form-group">
-                    <label for="email" className="text-md">Email address <span class="text-danger">*</span></label>
-                    <input id="email" type="text" class="form-control py-3 px-3" placeholder="mail@example.com" />
-                  </div>
-                  <div class="form-group">
-                    <label for="password" className="text-md">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control py-3 px-3" placeholder="********" />
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                  </div>
-                  <div class="form-group">
-                  </div>
-                </form>
-              </div>
-            </div>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <to
+                href="/register"
+                className="font-medium text-primary-500 hover:text-primary-600"
+              >
+                Sign up
+              </to>
+            </p>
           </div>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
-
-export default Login
 

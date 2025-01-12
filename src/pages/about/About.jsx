@@ -1,47 +1,82 @@
-import logo from "../../assets/DM-GURD.png"
+import React from "react";
+import { Users, Lock, Globe } from "lucide-react";
 
-import "./About.css"; 
-const About = () => {
+export default function About() {
   return (
-    <>
-      <div className="about">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <div className="head-title"> 
-                <h3 className="text-center"> About Us </h3>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="bg-[#1dbf73] text-white py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <h1 className="text-4xl font-bold mb-6">About PromiseBond</h1>
+          <p className="text-xl">
+            Revolutionizing the future of digital promises
+          </p>
+        </div>
+      </div>
+
+      {/* Mission Section */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+            <p className="text-gray-600 mb-6">
+              PromiseBond is pioneering a new way to create, trade, and fulfill
+              digital promises. We believe in a future where commitments can be
+              tokenized, traded, and tracked transparently.
+            </p>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <Users className="h-6 w-6 text-primary-500" />
+                <div>
+                  <h3 className="font-semibold">Community First</h3>
+                  <p className="text-gray-600">
+                    Building a trusted network of promise makers and takers
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Lock className="h-6 w-6 text-primary-500" />
+                <div>
+                  <h3 className="font-semibold">Secure & Transparent</h3>
+                  <p className="text-gray-600">
+                    Every transaction is recorded and verified
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Globe className="h-6 w-6 text-primary-500" />
+                <div>
+                  <h3 className="font-semibold">Global Access</h3>
+                  <p className="text-gray-600">
+                    Connect with promise makers worldwide
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-6 col-sm-6 ">
-              <div className="photo">
-                <img src={logo} alt="" />
-              </div>
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold mb-6">Why Choose Us</h2>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="font-semibold mb-2">Innovative Platform</h3>
+              <p className="text-gray-600">
+                First-of-its-kind platform for trading future promises
+              </p>
             </div>
-            <div className="col-md-6 col-sm-6">
-               <div className="about-content">
-                <h2> DEAR CUSTOMERS </h2>
-                <h5> We Are Working since 2016 to till now with hour thousand satisfied clients from the world. Our main priority is product quality and availability. Based on more than two years of experience in affiliate marketing, we carefully select and test FB accounts for advertising Facebook Ad and Facebook BMs. We also try to maintain a low cost in the accounts market. You can buy from us: facebook warmed up accounts, Facebook Softreg PVA Accounts, Facebook Softreg PVA Accounts with BM, Business Manager Facebook 250 $, Verified & Unlimited FB BM, Softreg tiktok ads, etc. </h5>
-                <h4> - DMGurd </h4>
-               </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="font-semibold mb-2">Trust System</h3>
+              <p className="text-gray-600">
+                Built-in reputation system ensures reliability
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <h3 className="font-semibold mb-2">Easy to Use</h3>
+              <p className="text-gray-600">
+                Simple interface for creating and trading bonds
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="thank-you">
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <h2 className="text-center"> Thank You So Much... </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  )
+    </div>
+  );
 }
-
-export default About    
-
-

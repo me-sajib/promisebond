@@ -1,50 +1,50 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { Menu, X, ChevronDown, Bell, Settings, User } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	// check if user is logged in
-	const token =
-		typeof window !== "undefined" && localStorage.getItem("promisebond_token");
-	const [loading, setLoading] = useState(true);
+	const token = localStorage.getItem("promisebond_token");
+	const [loading, setLoading] = useState(false);
 	const [users, setUsers] = useState(false);
 
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const handleLogout = () => {
-		localStorage.removeItem("promisebond_token");
-		window.location.href = "/login";
+		localStorage.removeItem("currentUser");
+		window.location.href = "/";
 	};
 
-	useEffect(() => {
-		if (token) {
-			fetch("http://localhost:5000/api/user", {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					const { status } = data;
-					if (status !== "success") {
-						localStorage.removeItem("promisebond_token");
-						setLoading(false);
-					} else {
-						setUsers(true);
-						setLoading(false);
-					}
-				})
-				.catch((error) => console.error(error));
-		} else {
-			setLoading(false);
-			setUsers(false);
-		}
-	}, [token]);
+	const locallyUser = localStorage.getItem("currentUser");
+	const user = locallyUser ? JSON.parse(locallyUser) : null;
+
+	// useEffect(() => {
+	// 	if (token) {
+	// 		fetch("http://localhost:5000/api/user", {
+	// 			method: "GET",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 				Authorization: `Bearer ${token}`,
+	// 			},
+	// 		})
+	// 			.then((response) => response.json())
+	// 			.then((data) => {
+	// 				const { status } = data;
+	// 				if (status !== "success") {
+	// 					localStorage.removeItem("promisebond_token");
+	// 					setLoading(false);
+	// 				} else {
+	// 					setUsers(true);
+	// 					setLoading(false);
+	// 				}
+	// 			})
+	// 			.catch((error) => console.error(error));
+	// 	} else {
+	// 		setLoading(false);
+	// 		setUsers(false);
+	// 	}
+	// }, [token]);
 
 	return (
 		<nav className="bg-white border-b">
@@ -52,28 +52,28 @@ const Navbar = () => {
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
 					<div className="flex items-center">
-						<Image src="/logo.webp" width={40} height={40} alt="Logo" />
+						<img src="/logo.webp" width={40} height={40} alt="Logo" />
 					</div>
 
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex items-center space-x-8">
-						<Link href="/" className="text-gray-700 hover:text-primary-500">
+						<Link to="/" className="text-gray-700 hover:text-primary-500">
 							Home
 						</Link>
 
-						<Link href="/about" className="text-gray-700 hover:text-[#1dbf73]">
+						<Link to="/about" className="text-gray-700 hover:text-[#1dbf73]">
 							About
 						</Link>
 
 						<Link
-							href="/how-it-works"
+							to="/how-it-works"
 							className="text-gray-700 hover:text-[#1dbf73]"
 						>
 							How It Works
 						</Link>
 
 						{/* Auth Buttons */}
-						{!loading && users && (
+						{!loading && user && (
 							<div className="flex items-center space-x-4">
 								<div className="flex items-center gap-4">
 									<button
@@ -85,39 +85,39 @@ const Navbar = () => {
 										</div>
 										<ChevronDown className="w-4 h-4 text-gray-500" />
 									</button>
+									{isDropdownOpen && (
+										<div className="absolute  top-12 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+											<div className="py-2">
+												<Link
+													onClick={() => setIsDropdownOpen(false)}
+													to="/dashboard"
+													className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+												>
+													Dashboard
+												</Link>
+												<button
+													onClick={handleLogout}
+													className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+												>
+													Logout
+												</button>
+											</div>
+										</div>
+									)}
 								</div>
 								{/* dropdown menu dashboard and logout */}
-								{isDropdownOpen && (
-									<div className="absolute right-0 top-12 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
-										<div className="py-2">
-											<Link
-												onClick={() => setIsDropdownOpen(false)}
-												href="/dashboard"
-												className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-											>
-												Dashboard
-											</Link>
-											<button
-												onClick={handleLogout}
-												className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-											>
-												Logout
-											</button>
-										</div>
-									</div>
-								)}
 							</div>
 						)}
-						{!loading && !users && (
+						{!loading && !user && (
 							<>
 								<Link
-									href={"/login"}
+									to={"/login"}
 									className="text-gray-700 hover:text-[#1dbf73]"
 								>
 									Sign in
 								</Link>
 								<Link
-									href={"/register"}
+									to={"/register"}
 									className="border border-[#1dbf73] text-[#1dbf73] px-4 py-2 rounded-lg hover:bg-[#1dbf73] hover:text-white transition-colors"
 								>
 									Join Now
@@ -143,26 +143,26 @@ const Navbar = () => {
 					<div className="md:hidden">
 						<div className="px-2 pt-2 pb-3 space-y-1">
 							<Link
-								href="/"
+								to="/"
 								className="block px-3 py-2 text-gray-700 hover:bg-primary-500 rounded-md"
 							>
 								Home
 							</Link>
 
 							<a
-								href="/how-it-works"
+								to="/how-it-works"
 								className="block px-3 py-2 text-gray-700 hover:bg-primary-500 rounded-md"
 							>
 								How It Works
 							</a>
 							<a
-								href="/about"
+								to="/about"
 								className="block px-3 py-2 text-gray-700 hover:bg-primary-500 rounded-md"
 							>
 								About
 							</a>
 							<a
-								href="/login"
+								to="/login"
 								className="block w-full text-left px-3 py-2 text-gray-700 hover:bg-primary-500 rounded-md"
 							>
 								Sign in

@@ -1,4 +1,5 @@
 import Products from "../components/admin/products/Products";
+import HowItWorks from "../components/layout/howItWork";
 import NotMatch from "../components/notMatch/NotMatch";
 import AuthGuard from "../context/AuthGuard";
 import About from "../pages/about/About";
@@ -13,10 +14,8 @@ import Address from "../pages/myAccount/address/Address";
 import ChangePassword from "../pages/myAccount/changePassword/ChangePassword";
 import Dashboard from "../pages/myAccount/dashboard/Dashboard";
 import Download from "../pages/myAccount/download/Download";
-import MyAccount from "../pages/myAccount/MyAccount";
 import Order from "../pages/myAccount/order/Order";
 import Register from "../pages/register/Register";
-import Replace from "../pages/replace/Replace";
 import Shop from "../pages/shop/Shop";
 
 const publicRoute = [
@@ -25,12 +24,12 @@ const publicRoute = [
         element: <Home />
     },
     {
-        path: "/about-us",
+        path: "/about",
         element: <About />
     },
     {
-        path: "/replace-rule",
-        element: <Replace />
+        path: "/how-it-works",
+        element: <HowItWorks />
     },
     {
         path: "/contact",
@@ -80,7 +79,7 @@ const routes = [
     {
         element: (
             <AuthGuard>
-                <MyAccount />
+                <AdminDashboard />
             </AuthGuard>
         ),
         children: loggedInRoutes

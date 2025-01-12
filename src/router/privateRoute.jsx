@@ -7,20 +7,13 @@ import Shop from "../pages/shop/Shop";
 // create private router 
 const privateRoute = [
   {
-    element : <Layout />,
-    children : [
+    element: <Layout />,
+    children: [
       {
-        path : "/shop",
-        element : <Shop /> 
+        path: "/shop",
+        element: <Shop />
       },
-      {
-        path : "/checkout",
-        element : <Checkout /> 
-      },
-      {
-        path : "/cart",
-        element : <Cart /> 
-      }
+
     ]
 
   }
@@ -29,5 +22,5 @@ const privateRoute = [
 
 
 // export default private router
-export default privateRoute; 
+export default privateRoute;
 
