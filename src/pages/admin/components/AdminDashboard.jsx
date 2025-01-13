@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Users, DollarSign, AlertTriangle, Bell, Settings, LogOut } from 'lucide-react';
+import { TrendingUp, Users, DollarSign, AlertTriangle, Bell, Settings, LogOut, LogOutIcon } from 'lucide-react';
 
 const AdminDashboard = () => {
 	const [activeTab, setActiveTab] = useState('overview');
@@ -38,6 +38,12 @@ const AdminDashboard = () => {
 		));
 	};
 
+	const handleLogout = () => {
+		localStorage.removeItem("currentUser");
+		window.location.href = "/";
+	};
+
+
 	return (
 		<div className="min-h-screen bg-gray-50 flex">
 			{/* Sidebar */}
@@ -62,6 +68,10 @@ const AdminDashboard = () => {
 						<Settings className="w-5 h-5 mr-3" />
 						Settings
 					</a>
+					<button onClick={handleLogout} className={`flex items-center px-6 py-3 cursor-pointer text-gray-400`}>
+						<LogOutIcon className="w-5 h-5 mr-3" />
+						Logout
+					</button>
 				</nav>
 			</div>
 

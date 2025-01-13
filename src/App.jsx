@@ -40,13 +40,13 @@ function App() {
     }, [])
 
     return (
-        <>
-            {pathname !== '/dashboard' && <Navbar />}
+        <div className='bg-gray-50'>
+            <Navbar />
             <ParentContext.Provider value={{ values, setValues }}>
                 {content}
             </ParentContext.Provider>
             {pathname !== '/dashboard' && <Footer />}
-        </>
+        </div>
     )
 }
 

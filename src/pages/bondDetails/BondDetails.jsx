@@ -1,80 +1,69 @@
 import React, { useState } from 'react';
-import { Heart, Star, Clock, User, Share2, Flag, ChevronDown, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Heart, Star, Clock, Calendar, Share2, ShieldCheck, AlertCircle } from 'lucide-react';
 
 const BondDetails = () => {
-	const [selectedTab, setSelectedTab] = useState('basic');
 	const [selectedPayment, setSelectedPayment] = useState('stripe');
 
 	const bondDetails = {
 		id: 1,
-		image: '/placeholder.svg?height=400&width=600',
-		title: 'I will create a custom tech review video',
+		name: 'Bond 1',
+		image: 'https://placehold.co/600x400',
+		title: 'Promise to deliver a 10-minute tech review video with 100k+ views',
 		creator: 'TechGuru',
 		subscribers: 10000,
 		rating: 4.9,
 		reviews: 120,
-		deliveryTime: '3 days',
-		startingPrice: 50,
-		description: 'I will create a professional, in-depth tech review video for your product. This includes detailed analysis, high-quality production, and engaging content tailored to your target audience.',
-		aboutCreator: 'Tech enthusiast with 5+ years of experience in creating engaging tech review content. Known for honest, detailed reviews and high production quality.',
+		promiseDate: '2025-01-20', // Future date when promise will be fulfilled
+		bondValue: 300,
+		currentMarketValue: 450, // Current trading value based on creator's growth
+		expectedViews: '100,000+',
+		missionDetails: 'I promise to create and publish a detailed 10-minute tech review video on my channel which currently has 50,000 subscribers growing by 1,000 per week. The video will be published when my channel reaches 100,000 subscribers, estimated in 12 months. This bond represents a guaranteed spot in that future video.',
+		promiseDetails: {
+			name: 'Thomas Lee',
+			purpose: 'Raising $20,000 for gym upgrades.',
+			promise:
+				'Conduct viral marketing for the buyer’s product/service on Instagram by posting three times over 15 days. Attach six popular photos.',
+		},
+		creatorStats: {
+			currentSubscribers: 50000,
+			weeklyGrowth: 1000,
+			avgViews: 75000,
+			completedPromises: 15
+		},
+		features: [
+			'Expected to grow to over 300K followers within a year.',
+			'Current market rate for a single promotional post by a 300K fitness influencer is $500.',
+		],
+		maturityDate: '2027-01-15', // Bond maturity date
+		price: 500, // Initial price capped at $500
+		representativeImage: 'https://placehold.co/600x400', // Representative image
+		socialMedia: {
+			platform: 'Instagram',
+			channelName: "Tommy's Health Training Course",
+			country: 'USA',
+		},
+		liabilityAgreement: true, // Liability checkbox must be checked
+		quantity: 30, // Bonds issued
+		promiseDetails: {
+			name: 'Thomas Lee',
+			purpose: 'Raising $20,000 for gym upgrades.',
+			promise:
+				'Conduct viral marketing for the buyer’s product/service on Instagram by posting three times over 15 days. Attach six popular photos.',
+		},
 	};
-
-	const packages = [
-		{
-			id: 'basic',
-			name: 'Basic',
-			price: 50,
-			delivery: '3 days',
-			features: [
-				'5-minute video review',
-				'Basic editing',
-				'1 revision round',
-				'Script review',
-			]
-		},
-		{
-			id: 'standard',
-			name: 'Standard',
-			price: 100,
-			delivery: '5 days',
-			features: [
-				'10-minute video review',
-				'Advanced editing',
-				'2 revision rounds',
-				'Script review',
-				'Custom thumbnails',
-				'Raw footage included'
-			]
-		},
-		{
-			id: 'premium',
-			name: 'Premium',
-			price: 200,
-			delivery: '7 days',
-			features: [
-				'15-minute video review',
-				'Premium editing',
-				'Unlimited revisions',
-				'Script review',
-				'Custom thumbnails',
-				'Raw footage included',
-				'Social media clips',
-				'Priority support'
-			]
-		}
-	];
 
 	return (
 		<div className="min-h-screen bg-gray-50">
 
+
 			<div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-12 gap-8">
 				{/* Main Content */}
 				<div className="col-span-12 lg:col-span-8">
-					{/* Image and Basic Info */}
+					{/* Bond Preview */}
 					<div className="bg-white rounded-lg shadow-sm mb-8">
 						<div className="relative">
 							<img
-								src="https://placehold.co/600x400"
+								src={bondDetails.image}
 								alt={bondDetails.title}
 								className="w-full rounded-t-lg aspect-video object-cover"
 							/>
@@ -97,7 +86,7 @@ const BondDetails = () => {
 								<div>
 									<h3 className="font-medium text-gray-900">{bondDetails.creator}</h3>
 									<p className="text-sm text-gray-600">
-										{bondDetails.subscribers.toLocaleString()} Subscribers
+										{bondDetails.creatorStats.currentSubscribers.toLocaleString()} Subscribers
 									</p>
 								</div>
 							</div>
@@ -106,71 +95,157 @@ const BondDetails = () => {
 								<div className="flex items-center gap-1">
 									<Star className="w-4 h-4 text-yellow-400 fill-current" />
 									<span className="font-medium">{bondDetails.rating}</span>
-									<span className="text-gray-600">({bondDetails.reviews})</span>
+									<span className="text-gray-600">({bondDetails.completedPromises} promises kept)</span>
 								</div>
 								<div className="flex items-center gap-1 text-gray-600">
 									<Clock className="w-4 h-4" />
-									<span>{bondDetails.deliveryTime} delivery</span>
+									<span>Fulfillment: {new Date(bondDetails.promiseDate).toLocaleDateString()}</span>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					{/* Package Selection */}
 					<div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-						<h2 className="text-xl font-bold text-gray-900 mb-6">Select Package</h2>
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Promise Mission</h2>
+						<p className="text-gray-600 leading-relaxed mb-6">
+							{bondDetails.missionDetails}
+						</p>
 
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-							{packages.map((pkg) => (
-								<button
-									key={pkg.id}
-									onClick={() => setSelectedTab(pkg.id)}
-									className={`p-6 rounded-lg border-2 text-left transition-all ${selectedTab === pkg.id
-										? 'border-blue-600 bg-blue-50'
-										: 'border-gray-200 hover:border-gray-300'
-										}`}
-								>
-									<h3 className="font-bold text-gray-900 mb-2">{pkg.name}</h3>
-									<p className="text-2xl font-bold text-gray-900 mb-4">
-										${pkg.price}
-									</p>
-									<p className="text-sm text-gray-600 mb-4">
-										{pkg.delivery} delivery
-									</p>
-									<ul className="space-y-2">
-										{pkg.features.map((feature, index) => (
-											<li key={index} className="text-sm text-gray-600 flex items-center gap-2">
-												<span className="w-1 h-1 bg-gray-600 rounded-full" />
-												{feature}
-											</li>
-										))}
-									</ul>
-								</button>
-							))}
+						{/* Additional Details Section */}
+						<div className="grid grid-cols-2 gap-6 mt-6">
+							<div className="p-4 bg-blue-50 rounded-lg">
+								<h3 className="font-medium text-gray-900 mb-2">Bond Details</h3>
+								<ul className="space-y-2">
+									<li className="text-sm text-gray-600">
+										<strong>Bond ID:</strong> #{bondDetails.id}
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Issuance Date:</strong> {new Date(bondDetails.issuanceDate).toLocaleDateString()}
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Expiration Date:</strong> {new Date(bondDetails.promiseDate).toLocaleDateString()}
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Total Quantity:</strong> 50 bonds
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Remaining Quantity:</strong> 30 bonds
+									</li>
+								</ul>
+							</div>
+
+							<div className="p-4 bg-green-50 rounded-lg">
+								<h3 className="font-medium text-gray-900 mb-2">Mission Metrics</h3>
+								<ul className="space-y-2">
+									<li className="text-sm text-gray-600">
+										<strong>Deadline:</strong> {new Date(bondDetails.deadline).toLocaleDateString()}
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Subscribers Needed:</strong> 100,000
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Current Subscribers:</strong> {bondDetails.creatorStats.currentSubscribers.toLocaleString()}
+									</li>
+									<li className="text-sm text-gray-600">
+										<strong>Average Views:</strong> {bondDetails.creatorStats.avgViews.toLocaleString()}
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 
-					{/* Description */}
-					<div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-						<h2 className="text-xl font-bold text-gray-900 mb-4">About This Bond</h2>
-						<p className="text-gray-600 leading-relaxed">
-							{bondDetails.description}
-						</p>
+
+
+					{/* Market Performance */}
+					<div className="bg-white rounded-lg shadow-sm p-6">
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Bond Performance</h2>
+						<div className="grid grid-cols-3 gap-6">
+							<div className="p-4 bg-gray-50 rounded-lg">
+								<p className="text-sm text-gray-600 mb-1">Initial Value</p>
+								<p className="text-2xl font-bold text-gray-900">${bondDetails.bondValue}</p>
+							</div>
+							<div className="p-4 bg-gray-50 rounded-lg">
+								<p className="text-sm text-gray-600 mb-1">Current Value</p>
+								<p className="text-2xl font-bold text-green-600">${bondDetails.currentMarketValue}</p>
+							</div>
+							<div className="p-4 bg-gray-50 rounded-lg">
+								<p className="text-sm text-gray-600 mb-1">Potential ROI</p>
+								<p className="text-2xl font-bold text-blue-600">
+									+{(((bondDetails.currentMarketValue - bondDetails.bondValue) / bondDetails.bondValue) * 100).toFixed(1)}%
+								</p>
+							</div>
+						</div>
 					</div>
 
-					{/* About Creator */}
-					<div className="bg-white rounded-lg shadow-sm p-6">
-						<h2 className="text-xl font-bold text-gray-900 mb-4">About The Creator</h2>
-						<p className="text-gray-600 leading-relaxed">
-							{bondDetails.aboutCreator}
-						</p>
+					{/* Promise Details */}
+					<div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Promise Details</h2>
+						<ul className="space-y-2">
+							<li className="text-sm text-gray-600">
+								<strong>Name:</strong> {bondDetails.promiseDetails.name}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Purpose:</strong> {bondDetails.promiseDetails.purpose}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Promise:</strong> {bondDetails.promiseDetails.promise}
+							</li>
+						</ul>
 					</div>
+
+					{/* Features */}
+					<div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Features</h2>
+						<ul className="list-disc pl-6 space-y-2">
+							{bondDetails.features.map((feature, index) => (
+								<li key={index} className="text-sm text-gray-600">
+									{feature}
+								</li>
+							))}
+						</ul>
+					</div>
+
+					{/* Social Media Details */}
+					<div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Social Media Details</h2>
+						<ul className="space-y-2">
+							<li className="text-sm text-gray-600">
+								<strong>Platform:</strong> {bondDetails.socialMedia.platform}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Channel Name:</strong> {bondDetails.socialMedia.channelName}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Country:</strong> {bondDetails.socialMedia.country}
+							</li>
+						</ul>
+					</div>
+
+					{/* Bond Metrics */}
+					<div className="bg-white rounded-lg shadow-sm p-6">
+						<h2 className="text-xl font-bold text-gray-900 mb-4">Bond Metrics</h2>
+						<ul className="space-y-2">
+							<li className="text-sm text-gray-600">
+								<strong>Maturity Date:</strong> {new Date(bondDetails.maturityDate).toLocaleDateString()}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Price:</strong> ${bondDetails.price}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Quantity Issued:</strong> {bondDetails.quantity}
+							</li>
+							<li className="text-sm text-gray-600">
+								<strong>Liability Agreement:</strong> {bondDetails.liabilityAgreement ? 'Checked' : 'Not Checked'}
+							</li>
+						</ul>
+					</div>
+
 				</div>
 
-				{/* Payment Sidebar */}
+				{/* Investment Sidebar */}
 				<div className="col-span-12 lg:col-span-4">
 					<div className="bg-white rounded-lg shadow-sm p-6 sticky top-8">
-						<h2 className="text-xl font-bold text-gray-900 mb-6">Payment Details</h2>
+						<h2 className="text-xl font-bold text-gray-900 mb-6">Invest in This Promise</h2>
 
 						{/* Payment Method Selection */}
 						<div className="mb-6">
@@ -184,7 +259,7 @@ const BondDetails = () => {
 										}`}
 								>
 									<img
-										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_6iiXu6icn9rEYWxaOIquf2WGNZn5lTigdQ&s"
+										src="https://cdn-icons-png.flaticon.com/512/4341/4341764.png"
 										alt="Stripe"
 										className="w-6 h-6"
 									/>
@@ -194,12 +269,12 @@ const BondDetails = () => {
 								<button
 									onClick={() => setSelectedPayment('paypal')}
 									className={`w-full p-4 rounded-lg border-2 flex items-center gap-3 transition-all ${selectedPayment === 'paypal'
-										? 'border-blue-600 bg-blue-50'
+										? 'border-primary-500 bg-blue-50'
 										: 'border-gray-200'
 										}`}
 								>
 									<img
-										src="https://cdn-icons-png.flaticon.com/512/174/174861.png"
+										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc1f7ohLwTdmYAmVn4dKE3sDswwgOtyCmyXw&s"
 										alt="PayPal"
 										className="w-6 h-6"
 									/>
@@ -208,33 +283,31 @@ const BondDetails = () => {
 							</div>
 						</div>
 
-						{/* Payment Summary */}
+						{/* Investment Summary */}
 						<div className="border-t border-gray-200 py-4 mb-6">
 							<div className="flex justify-between mb-2">
-								<span className="text-gray-600">Package Price</span>
-								<span className="font-medium">
-									${packages.find(p => p.id === selectedTab)?.price}
-								</span>
+								<span className="text-gray-600">Bond Value</span>
+								<span className="font-medium">${bondDetails.bondValue}</span>
 							</div>
 							<div className="flex justify-between mb-2">
 								<span className="text-gray-600">Service Fee</span>
 								<span className="font-medium">$5</span>
 							</div>
 							<div className="flex justify-between font-bold text-lg">
-								<span>Total</span>
-								<span>${(packages.find(p => p.id === selectedTab)?.price || 0) + 5}</span>
+								<span>Total Investment</span>
+								<span>${bondDetails.bondValue + 5}</span>
 							</div>
 						</div>
 
-						{/* Purchase Button */}
-						<button className="w-full bg-blue-600 text-white py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors mb-4">
-							Continue to Payment
+						{/* Investment Button */}
+						<button className="w-full bg-primary-500 text-white py-2 rounded-lg font-medium hover:bg-primary-500 transition-colors mb-4">
+							Purchase Bond
 						</button>
 
 						{/* Security Notice */}
 						<div className="flex items-center gap-2 text-sm text-gray-600">
 							<ShieldCheck className="w-4 h-4" />
-							<span>Secure payment powered by Stripe</span>
+							<span>Secure investment powered by Stripe</span>
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,7 @@
 import Products from "../components/admin/products/Products";
 import AllBonds from "../components/home/AllPromise";
+// import Marketplace from "../components/home/MarketPlace";
+import MarketplaceDetails from "../components/home/MarketplaceDetails";
 import HowItWorks from "../components/layout/howItWork";
 import NotMatch from "../components/notMatch/NotMatch";
 import AuthGuard from "../context/AuthGuard";
@@ -8,6 +10,7 @@ import AdminDashboard from "../pages/admin/dashboard/Dashboard";
 import BondDetails from "../pages/bondDetails/BondDetails";
 import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
+import Marketplace from "../pages/marketplace/MarketPlace";
 import AccountDetail from "../pages/myAccount/accountDetails/AccountDetail";
 import Address from "../pages/myAccount/address/Address";
 import ChangePassword from "../pages/myAccount/changePassword/ChangePassword";
@@ -34,6 +37,8 @@ const publicRoute = [
         element: <AllBonds />
     },
     { path: "/bonds/:id", element: <BondDetails /> },
+    { path: "/marketplace", element: <Marketplace /> },
+    { path: "/marketplace/:id", element: <MarketplaceDetails /> },
     {
         path: "/login",
         element: <Login />

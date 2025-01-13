@@ -46,84 +46,407 @@ const Home = () => {
 	// Real services based on actual promise bonds
 	const popularBonds = [
 		{
-			title: "1-Minute Product Feature in Tech Review (100k+ Views)",
-			description:
-				"I'll feature your product in my weekly tech review with guaranteed 100k+ views",
-			creator: "TechReviewPro",
-			rating: 4.9,
-			reviews: 283,
-			subscribers: "250k",
-			orders: 12,
-			deliveryTime: "1 Year",
-			startingPrice: 300,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 1,
+			"name": "Bond 1",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 11-minute tech review video with 100k+ views",
+			"creator": "Creator 1",
+			"subscribers": 11000,
+			"rating": 4.6,
+			"reviews": 120,
+			"promiseDate": "2025-01-21",
+			"bondValue": 310,
+			"currentMarketValue": 470,
+			"expectedViews": "110,000+",
+			"missionDetails": "I promise to create and publish a detailed 11-minute tech review video on my channel which currently has 55k subscribers growing by 1.1k per week. The video will be published when my channel reaches 110k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 1",
+				"purpose": "Raising $21000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 4 times over 16 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 55000,
+				"weeklyGrowth": 1100,
+				"avgViews": 80000,
+				"completedPromises": 16
+			},
+			"features": [
+				"Expected to grow to over 310k followers within a year.",
+				"Current market rate for a single promotional post by a 310k influencer is $550."
+			],
+			"maturityDate": "2027-01-16",
+			"price": 550,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 1",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 31
 		},
 		{
-			title: "Gaming Stream Integration (50k Live Viewers)",
-			description:
-				"Live product showcase during peak gaming hours with active chat engagement",
-			creator: "StreamMaster",
-			rating: 4.8,
-			reviews: 195,
-			subscribers: "180k",
-			orders: 8,
-			deliveryTime: "1 Year",
-			startingPrice: 500,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 2,
+			"name": "Bond 2",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 12-minute tech review video with 200k+ views",
+			"creator": "Creator 2",
+			"subscribers": 12000,
+			"rating": 4.7,
+			"reviews": 140,
+			"promiseDate": "2025-01-22",
+			"bondValue": 320,
+			"currentMarketValue": 490,
+			"expectedViews": "120,000+",
+			"missionDetails": "I promise to create and publish a detailed 12-minute tech review video on my channel which currently has 60k subscribers growing by 1.2k per week. The video will be published when my channel reaches 120k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 2",
+				"purpose": "Raising $22000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 5 times over 17 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 60000,
+				"weeklyGrowth": 1200,
+				"avgViews": 85000,
+				"completedPromises": 17
+			},
+			"features": [
+				"Expected to grow to over 320k followers within a year.",
+				"Current market rate for a single promotional post by a 320k influencer is $600."
+			],
+			"maturityDate": "2027-01-17",
+			"price": 600,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 2",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 32
 		},
 		{
-			title: "1-Minute Product Feature in Tech Review (100k+ Views)",
-			description:
-				"I'll feature your product in my weekly tech review with guaranteed 100k+ views",
-			creator: "TechReviewPro",
-			rating: 4.9,
-			reviews: 283,
-			subscribers: "250k",
-			orders: 12,
-			deliveryTime: "1 Year",
-			startingPrice: 300,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 3,
+			"name": "Bond 3",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 13-minute tech review video with 300k+ views",
+			"creator": "Creator 3",
+			"subscribers": 13000,
+			"rating": 4.8,
+			"reviews": 160,
+			"promiseDate": "2025-01-23",
+			"bondValue": 330,
+			"currentMarketValue": 510,
+			"expectedViews": "130,000+",
+			"missionDetails": "I promise to create and publish a detailed 13-minute tech review video on my channel which currently has 65k subscribers growing by 1.3k per week. The video will be published when my channel reaches 130k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 3",
+				"purpose": "Raising $23000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 6 times over 18 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 65000,
+				"weeklyGrowth": 1300,
+				"avgViews": 90000,
+				"completedPromises": 18
+			},
+			"features": [
+				"Expected to grow to over 330k followers within a year.",
+				"Current market rate for a single promotional post by a 330k influencer is $650."
+			],
+			"maturityDate": "2027-01-18",
+			"price": 650,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 3",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 33
 		},
 		{
-			title: "Gaming Stream Integration (50k Live Viewers)",
-			description:
-				"Live product showcase during peak gaming hours with active chat engagement",
-			creator: "StreamMaster",
-			rating: 4.8,
-			reviews: 195,
-			subscribers: "180k",
-			orders: 8,
-			deliveryTime: "1 Year",
-			startingPrice: 500,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 4,
+			"name": "Bond 4",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 14-minute tech review video with 400k+ views",
+			"creator": "Creator 4",
+			"subscribers": 14000,
+			"rating": 4.9,
+			"reviews": 180,
+			"promiseDate": "2025-01-24",
+			"bondValue": 340,
+			"currentMarketValue": 530,
+			"expectedViews": "140,000+",
+			"missionDetails": "I promise to create and publish a detailed 14-minute tech review video on my channel which currently has 70k subscribers growing by 1.4k per week. The video will be published when my channel reaches 140k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 4",
+				"purpose": "Raising $24000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 7 times over 19 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 70000,
+				"weeklyGrowth": 1400,
+				"avgViews": 95000,
+				"completedPromises": 19
+			},
+			"features": [
+				"Expected to grow to over 340k followers within a year.",
+				"Current market rate for a single promotional post by a 340k influencer is $700."
+			],
+			"maturityDate": "2027-01-19",
+			"price": 700,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 4",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 34
 		},
 		{
-			title: "1-Minute Product Feature in Tech Review (100k+ Views)",
-			description:
-				"I'll feature your product in my weekly tech review with guaranteed 100k+ views",
-			creator: "TechReviewPro",
-			rating: 4.9,
-			reviews: 283,
-			subscribers: "250k",
-			orders: 12,
-			deliveryTime: "1 Year",
-			startingPrice: 300,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 5,
+			"name": "Bond 5",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 15-minute tech review video with 500k+ views",
+			"creator": "Creator 5",
+			"subscribers": 15000,
+			"rating": 5.0,
+			"reviews": 200,
+			"promiseDate": "2025-01-25",
+			"bondValue": 350,
+			"currentMarketValue": 550,
+			"expectedViews": "150,000+",
+			"missionDetails": "I promise to create and publish a detailed 15-minute tech review video on my channel which currently has 75k subscribers growing by 1.5k per week. The video will be published when my channel reaches 150k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 5",
+				"purpose": "Raising $25000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 8 times over 20 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 75000,
+				"weeklyGrowth": 1500,
+				"avgViews": 100000,
+				"completedPromises": 20
+			},
+			"features": [
+				"Expected to grow to over 350k followers within a year.",
+				"Current market rate for a single promotional post by a 350k influencer is $750."
+			],
+			"maturityDate": "2027-01-20",
+			"price": 750,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 5",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 35
 		},
 		{
-			title: "Gaming Stream Integration (50k Live Viewers)",
-			description:
-				"Live product showcase during peak gaming hours with active chat engagement",
-			creator: "StreamMaster",
-			rating: 4.8,
-			reviews: 195,
-			subscribers: "180k",
-			orders: 8,
-			deliveryTime: "1 Year",
-			startingPrice: 500,
-			image: "https://image-placeholder.com/images/actual-size/320x200.png",
+			"id": 6,
+			"name": "Bond 6",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 16-minute tech review video with 600k+ views",
+			"creator": "Creator 6",
+			"subscribers": 16000,
+			"rating": 5.1,
+			"reviews": 220,
+			"promiseDate": "2025-01-26",
+			"bondValue": 360,
+			"currentMarketValue": 570,
+			"expectedViews": "160,000+",
+			"missionDetails": "I promise to create and publish a detailed 16-minute tech review video on my channel which currently has 80k subscribers growing by 1.6k per week. The video will be published when my channel reaches 160k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 6",
+				"purpose": "Raising $26000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 9 times over 21 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 80000,
+				"weeklyGrowth": 1600,
+				"avgViews": 105000,
+				"completedPromises": 21
+			},
+			"features": [
+				"Expected to grow to over 360k followers within a year.",
+				"Current market rate for a single promotional post by a 360k influencer is $800."
+			],
+			"maturityDate": "2027-01-21",
+			"price": 800,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 6",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 36
 		},
-	];
+		{
+			"id": 7,
+			"name": "Bond 7",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 17-minute tech review video with 700k+ views",
+			"creator": "Creator 7",
+			"subscribers": 17000,
+			"rating": 5.2,
+			"reviews": 240,
+			"promiseDate": "2025-01-27",
+			"bondValue": 370,
+			"currentMarketValue": 590,
+			"expectedViews": "170,000+",
+			"missionDetails": "I promise to create and publish a detailed 17-minute tech review video on my channel which currently has 85k subscribers growing by 1.7000000000000002k per week. The video will be published when my channel reaches 170k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 7",
+				"purpose": "Raising $27000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 10 times over 22 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 85000,
+				"weeklyGrowth": 1700,
+				"avgViews": 110000,
+				"completedPromises": 22
+			},
+			"features": [
+				"Expected to grow to over 370k followers within a year.",
+				"Current market rate for a single promotional post by a 370k influencer is $850."
+			],
+			"maturityDate": "2027-01-22",
+			"price": 850,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 7",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 37
+		},
+		{
+			"id": 8,
+			"name": "Bond 8",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 18-minute tech review video with 800k+ views",
+			"creator": "Creator 8",
+			"subscribers": 18000,
+			"rating": 5.3,
+			"reviews": 260,
+			"promiseDate": "2025-01-28",
+			"bondValue": 380,
+			"currentMarketValue": 610,
+			"expectedViews": "180,000+",
+			"missionDetails": "I promise to create and publish a detailed 18-minute tech review video on my channel which currently has 90k subscribers growing by 1.8k per week. The video will be published when my channel reaches 180k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 8",
+				"purpose": "Raising $28000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 11 times over 23 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 90000,
+				"weeklyGrowth": 1800,
+				"avgViews": 115000,
+				"completedPromises": 23
+			},
+			"features": [
+				"Expected to grow to over 380k followers within a year.",
+				"Current market rate for a single promotional post by a 380k influencer is $900."
+			],
+			"maturityDate": "2027-01-23",
+			"price": 900,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 8",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 38
+		},
+		{
+			"id": 9,
+			"name": "Bond 9",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 19-minute tech review video with 900k+ views",
+			"creator": "Creator 9",
+			"subscribers": 19000,
+			"rating": 5.4,
+			"reviews": 280,
+			"promiseDate": "2025-01-29",
+			"bondValue": 390,
+			"currentMarketValue": 630,
+			"expectedViews": "190,000+",
+			"missionDetails": "I promise to create and publish a detailed 19-minute tech review video on my channel which currently has 95k subscribers growing by 1.9k per week. The video will be published when my channel reaches 190k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 9",
+				"purpose": "Raising $29000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 12 times over 24 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 95000,
+				"weeklyGrowth": 1900,
+				"avgViews": 120000,
+				"completedPromises": 24
+			},
+			"features": [
+				"Expected to grow to over 390k followers within a year.",
+				"Current market rate for a single promotional post by a 390k influencer is $950."
+			],
+			"maturityDate": "2027-01-24",
+			"price": 950,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 9",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 39
+		},
+		{
+			"id": 10,
+			"name": "Bond 10",
+			"image": "https://placehold.co/600x400",
+			"title": "Promise to deliver a 20-minute tech review video with 1000k+ views",
+			"creator": "Creator 10",
+			"subscribers": 20000,
+			"rating": 5.5,
+			"reviews": 300,
+			"promiseDate": "2025-01-30",
+			"bondValue": 400,
+			"currentMarketValue": 650,
+			"expectedViews": "200,000+",
+			"missionDetails": "I promise to create and publish a detailed 20-minute tech review video on my channel which currently has 100k subscribers growing by 2.0k per week. The video will be published when my channel reaches 200k subscribers, estimated in 12 months.",
+			"promiseDetails": {
+				"name": "Thomas Lee 10",
+				"purpose": "Raising $30000 for project upgrades.",
+				"promise": "Conduct viral marketing for the buyer\u2019s product/service by posting 13 times over 25 days. Attach six popular photos."
+			},
+			"creatorStats": {
+				"currentSubscribers": 100000,
+				"weeklyGrowth": 2000,
+				"avgViews": 125000,
+				"completedPromises": 25
+			},
+			"features": [
+				"Expected to grow to over 400k followers within a year.",
+				"Current market rate for a single promotional post by a 400k influencer is $1000."
+			],
+			"maturityDate": "2027-01-25",
+			"price": 1000,
+			"representativeImage": "https://placehold.co/600x400",
+			"socialMedia": {
+				"platform": "Instagram",
+				"channelName": "Channel 10",
+				"country": "USA"
+			},
+			"liabilityAgreement": true,
+			"quantity": 40
+		}
+	]
+
 
 	return (
 		<div className="min-h-screen bg-white">
@@ -291,7 +614,7 @@ const Home = () => {
 										<div className="text-right">
 											<span className="text-[12px] text-primary-500">From</span>
 											<p className="text-[18px] text-black font-semibold">
-												${bond.startingPrice}
+												${bond.bondValue}
 											</p>
 										</div>
 									</div>

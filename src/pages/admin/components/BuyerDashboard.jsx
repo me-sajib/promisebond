@@ -1,8 +1,11 @@
-'use client'
 
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { TrendingUp, DollarSign, Gift, Bell, Search, Star, Settings, LogOut } from 'lucide-react';
+import { TrendingUp, DollarSign, Gift, Bell, Search, Star, Settings, LogOut, Users, LogOutIcon } from 'lucide-react';
+import Billing from '../../../components/buyer/Billing';
+import Profile from '../../../components/buyer/Profile';
+import Setting from '../../../components/buyer/Settings';
+import PurchasedBonds from '../../../components/buyer/PurchaseBond';
 
 
 const BuyerDashboard = ({ userId }) => {
@@ -118,136 +121,42 @@ const BuyerDashboard = ({ userId }) => {
     </>
   );
 
-  const renderMyBonds = () => (
-    <div className="bg-white rounded-xl shadow-sm">
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">Your Bonds</h2>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search bonds..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
-            </div>
-          </div>
-        </div>
-        <table className="w-full">
-          <thead>
-            <tr className="text-left text-gray-500 border-b">
-              <th className="pb-3">Title</th>
-              <th className="pb-3">Creator</th>
-              <th className="pb-3">Price</th>
-              <th className="pb-3">Due Date</th>
-              <th className="pb-3">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBonds.map(bond => (
-              <tr key={bond.id} className="border-b cursor-pointer hover:bg-gray-50" onClick={() => handleBondClick(bond)}>
-                <td className="py-4">{bond.title}</td>
-                <td className="py-4">{bond.creator}</td>
-                <td className="py-4">${bond.price}</td>
-                <td className="py-4">{bond.dueDate}</td>
-                <td className="py-4">
-                  <span className={`px-2 py-1 rounded-full text-xs ${bond.status === 'Active' ? 'bg-green-100 text-green-800' :
-                    bond.status === 'Pending Fulfillment' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-blue-100 text-blue-800'
-                    }`}>
-                    {bond.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-
-  const renderExplore = () => (
-    <div className="bg-white rounded-xl shadow-sm p-6">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">Explore Bonds</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {exploreBonds.map(bond => (
-          <div key={bond.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
-            <h3 className="text-lg font-semibold mb-2">{bond.title}</h3>
-            <p className="text-gray-600 mb-2">Creator: {bond.creator}</p>
-            <p className="text-indigo-600 font-bold mb-2">${bond.price}</p>
-            <div className="flex items-center">
-              <Star className="w-4 h-4 text-yellow-400 mr-1" />
-              <span>{bond.rating}</span>
-            </div>
-            <button className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition-colors duration-200">
-              View Details
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  const renderSettings = () => (
-    <div className="bg-white rounded-xl shadow-sm p-6">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">Account Settings</h2>
-      <form className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-          <input type="text" id="name" name="name" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Your Name" />
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-          <input type="email" id="email" name="email" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="you@example.com" />
-        </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">New Password</label>
-          <input type="password" id="password" name="password" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Leave blank to keep current password" />
-        </div>
-        <div>
-          <label htmlFor="notifications" className="block text-sm font-medium text-gray-700">Email Notifications</label>
-          <select id="notifications" name="notifications" className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-            <option>All notifications</option>
-            <option>Important only</option>
-            <option>None</option>
-          </select>
-        </div>
-        <div>
-          <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Save Changes
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    window.location.href = "/";
+  }
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <div className="fixed w-64 h-full bg-indigo-600">
+      <div className="fixed w-64 h-full bg-gray-800">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-white">Buyer Dashboard</h2>
         </div>
         <nav className="mt-6">
-          <a onClick={() => setActiveTab('dashboard')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'dashboard' ? 'bg-indigo-700 text-white' : 'text-indigo-100 hover:bg-indigo-700'}`}>
+          <a onClick={() => setActiveTab('overview')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'overview' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}`}>
             <TrendingUp className="w-5 h-5 mr-3" />
             Overview
           </a>
-          <a onClick={() => setActiveTab('mybonds')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'mybonds' ? 'bg-indigo-700 text-white' : 'text-indigo-100 hover:bg-indigo-700'}`}>
+          <a onClick={() => setActiveTab('purchases')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'purchases' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}`}>
             <Gift className="w-5 h-5 mr-3" />
-            My Bonds
+            Purchased Promise Bond
           </a>
-          <a onClick={() => setActiveTab('explore')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'explore' ? 'bg-indigo-700 text-white' : 'text-indigo-100 hover:bg-indigo-700'}`}>
-            <Search className="w-5 h-5 mr-3" />
-            Explore
+          <a onClick={() => setActiveTab('billing')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'billing' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}`}>
+            <DollarSign className="w-5 h-5 mr-3" />
+            Billing & Payments
           </a>
-          <a onClick={() => setActiveTab('settings')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'settings' ? 'bg-indigo-700 text-white' : 'text-indigo-100 hover:bg-indigo-700'}`}>
+          <a onClick={() => setActiveTab('profile')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'profile' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}`}>
+            <Users className="w-5 h-5 mr-3" />
+            Profile
+          </a>
+          <a onClick={() => setActiveTab('settings')} className={`flex items-center px-6 py-3 cursor-pointer ${activeTab === 'settings' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}`}>
             <Settings className="w-5 h-5 mr-3" />
             Settings
           </a>
+          <button onClick={handleLogout} className={`flex items-center px-6 py-3 cursor-pointer text-gray-400`}>
+            <LogOutIcon className="w-5 h-5 mr-3" />
+            Logout
+          </button>
         </nav>
       </div>
 
@@ -268,10 +177,11 @@ const BuyerDashboard = ({ userId }) => {
         </div>
 
         {/* Content based on active tab */}
-        {activeTab === 'dashboard' && renderDashboard()}
-        {activeTab === 'mybonds' && renderMyBonds()}
-        {activeTab === 'explore' && renderExplore()}
-        {activeTab === 'settings' && renderSettings()}
+        {activeTab === 'overview' && renderDashboard()}
+        {activeTab === 'purchases' && <PurchasedBonds />}
+        {activeTab === 'billing' && <Billing />}
+        {activeTab === 'profile' && <Profile />}
+        {activeTab === 'settings' && <Setting />}
       </div>
 
       {/* Bond Details Modal */}
