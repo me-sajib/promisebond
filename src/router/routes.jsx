@@ -33,7 +33,7 @@ const publicRoute = [
         element: <HowItWorks />
     },
     {
-        path: "/all-promise-bonds",
+        path: "/promise-bonds",
         element: <AllBonds />
     },
     { path: "/bonds/:id", element: <BondDetails /> },

@@ -476,14 +476,14 @@ const Home = () => {
 							Popular:
 							<div className="flex gap-3">
 								{[
-									"YouTube Features",
-									"Twitch Promotions",
-									"Instagram Stories",
-									"TikTok Integration",
+									"YouTube",
+									"Facebook",
+									"Instagram",
+									"TikTok",
 								].map((tag) => (
 									<button
 										key={tag}
-										className="px-3 py-1 border border-white rounded-[20px] hover:bg-white/10 transition-colors"
+										className="px-3 py-1 border border-white text-gray-800 rounded-[20px] hover:bg-white/10 transition-colors"
 									>
 										{tag}
 									</button>
@@ -494,11 +494,11 @@ const Home = () => {
 							<div className="max-w-[1400px] mx-auto px-8">
 								<div className="flex items-center justify-center gap-x-12">
 									<span className="text-gray-600 text-[12px]">Trusted by:</span>
-									{["Facebook", "Google", "Netflix", "Amazon", "Spotify"].map(
+									{["Facebook", "Youtube", "Instagram", "TikTok"].map(
 										(brand) => (
 											<span
 												key={brand}
-												className="text-gray-600 text-[12px] font-semibold"
+												className="text-gray-700 text-[12px] font-semibold"
 											>
 												{brand}
 											</span>
@@ -513,7 +513,7 @@ const Home = () => {
 			<Categories />
 
 			{/* Professional Services */}
-			<section className="py-16 bg-gray-50">
+			{/* <section className="py-16 bg-gray-50">
 				<div className="max-w-[1400px] mx-auto px-8">
 					<h2 className="text-[24px] text-black font-bold mb-6">
 						Professional services for future promotions
@@ -538,7 +538,7 @@ const Home = () => {
 						))}
 					</div>
 				</div>
-			</section>
+			</section> */}
 
 			{/* how it work */}
 			<HowBondWork />
@@ -546,16 +546,10 @@ const Home = () => {
 			{/* Latest Promise Bonds */}
 			<section className="py-16 bg-[#f5f5f5]">
 				<div className="max-w-[1400px] mx-auto px-8">
-					<div className="flex flex-col justify-start items-start lg:flex-row lg:justify-between lg:items-center mb-8">
-						<h2 className="text-[24px] text-black font-bold mb-4 lg:mb-0">
+					<div className="flex items-center justify-center  mb-8">
+						<h2 className="text-[24px] text-black font-bold mb-4 lg:mb-0 text-center">
 							Latest Promise Bonds
 						</h2>
-						<Link
-							to="/all-promise-bonds"
-							className="text-[#1dbf73] text-[16px] font-semibold hover:underline"
-						>
-							See All
-						</Link>
 					</div>
 
 					<div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -587,9 +581,6 @@ const Home = () => {
 											<h4 className="text-[14px] font-semibold text-black">
 												{bond.creator}
 											</h4>
-											<p className="text-[12px] text-primary-500">
-												{bond.subscribers} Subscribers
-											</p>
 										</div>
 									</div>
 
@@ -597,7 +588,7 @@ const Home = () => {
 										{bond.title}
 									</h3>
 
-									<div className="flex items-center gap-1 mb-3">
+									{/* <div className="flex items-center gap-1 mb-3">
 										<Star className="w-4 h-4 text-[#ffb33e] fill-current" />
 										<span className="text-[14px] text-[#ffb33e] font-semibold">
 											{bond.rating}
@@ -605,24 +596,30 @@ const Home = () => {
 										<span className="text-[14px] text-primary-500">
 											({bond.reviews})
 										</span>
-									</div>
+									</div> */}
 
-									<div className="flex justify-between items-center pt-3 border-t border-gray-200">
-										<span className="text-[12px] text-primary-500">
-											Promise Date: {bond.deliveryTime}
+									<div className="flex justify-between items-center pt-3 border-t border-gray-200 mb-2">
+										<span className="text-[13px] text-primary-500">
+											Quantity: {bond.quantity}
 										</span>
-										<div className="text-right">
-											<span className="text-[12px] text-primary-500">From</span>
-											<p className="text-[18px] text-black font-semibold">
-												${bond.bondValue}
-											</p>
-										</div>
+										<span className="text-[13px] font-bold text-primary-500">
+											Price: ${bond.bondValue}
+										</span>
+
+									</div>
+									<div className="flex justify-between items-center pt-3 border-t border-gray-200">
+										<span className="text-[13px] text-primary-500">
+											Expiry Date: 21-12-2025
+										</span>
+
 									</div>
 								</div>
 							</Link>
 						))}
 					</div>
+
 				</div>
+				<Link to="/" className="mt-8 block text-center text-primary-500">See more</Link>
 			</section>
 
 			<TopCreator />
@@ -686,40 +683,11 @@ const Home = () => {
 			{/* platform features */}
 			<Features />
 
-			{/* Marketplace Stats */}
-			<section className="py-16 bg-[#f5f5f5]">
-				<div className="max-w-[1400px] mx-auto px-8">
-					<div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-						<div>
-							<h3 className="text-[30px] font-bold text-black mb-2">$12M+</h3>
-							<p className="text-[18px] text-[#74767e]">Promise bonds traded</p>
-						</div>
 
-						<div>
-							<h3 className="text-[30px] font-bold text-black mb-2">96%</h3>
-							<p className="text-[18px] text-[#74767e]">
-								Promise fulfillment rate
-							</p>
-						</div>
-
-						<div>
-							<h3 className="text-[30px] font-bold text-black mb-2">4.9/5</h3>
-							<p className="text-[18px] text-[#74767e]">Average bond rating</p>
-						</div>
-
-						<div>
-							<h3 className="text-[30px] font-bold text-black mb-2">250K+</h3>
-							<p className="text-[18px] text-[#74767e]">Active creators</p>
-						</div>
-					</div>
-				</div>
-			</section>
 
 			{/* stories */}
 			<Story />
 
-			{/* blog */}
-			<Blog />
 		</div>
 	);
 };

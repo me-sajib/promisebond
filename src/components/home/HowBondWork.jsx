@@ -5,14 +5,14 @@ export default function HowBondWork() {
 	return (
 		<section className="py-16 container mx-auto px-4">
 			<h2 className="text-3xl font-bold text-center mb-12">
-				How Creator Promises Work
+				How to issue a promise bond
 			</h2>
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 				<div className="text-center p-6">
 					<div className="w-16 h-16 bg-primary-100 rounded-full mx-auto mb-4 flex items-center justify-center">
 						<Play className="w-8 h-8 text-primary-500" />
 					</div>
-					<h3 className="text-xl font-semibold mb-4">For Creators</h3>
+					<h3 className="text-xl font-semibold mb-4">For Issuer</h3>
 					<p className="text-gray-600">
 						Issue promise bonds for future content, promotions, or
 						collaborations. Get paid now for commitments you ill fulfill later.

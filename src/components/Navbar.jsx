@@ -19,11 +19,9 @@ const Navbar = () => {
 	// Common menu items
 	const commonMenu = [
 		{ name: "Home", path: "/" },
-		{ name: "How It Works", path: "/how-it-works" },
-		{ name: "About", path: "/about" },
-		{ name: "Marketplace", path: "/marketplace" },
-		{ name: "Terms", path: "/terms" },
-		{ name: "Privacy Policy", path: "/privacy-policy" },
+		{ name: "Promise Bonds", path: "/promise-bonds" },
+		{ name: "Market Place", path: "/marketplace" },
+		{ name: "How It Works", path: "/how-it-works" }
 	];
 
 	// Additional menus for Issuer
@@ -70,24 +68,15 @@ const Navbar = () => {
 								>
 									{item.name}
 								</Link>
-								{/* after home show dashboard  */}
-								{item.name === "Home" && user && (
-									<Link
-										key={index}
-										to={"/dashboard"}
-										className="text-gray-700 hover:text-primary-500"
-									>
-										Dashboard
-									</Link>
-								)}
-
 
 							</>
 						))}
 
 						{/* Auth Buttons */}
 						{user ? (
-							<></>
+							<>
+								<button>Sign off</button>
+							</>
 						) : (
 							<>
 								<Link
@@ -95,12 +84,6 @@ const Navbar = () => {
 									className="text-gray-700 hover:text-primary-500"
 								>
 									Sign In
-								</Link>
-								<Link
-									to="/register"
-									className="border border-primary-500 text-primary-500 px-4 py-2 rounded-lg hover:bg-primary-500 hover:text-white transition-colors"
-								>
-									Join Now
 								</Link>
 							</>
 						)}

@@ -2,18 +2,17 @@ import React from "react";
 
 export default function Footer() {
 	return (
-		<footer className=" py-16 border-t">
+		<footer className=" pt-16 border-t">
 			<div className="max-w-[1400px] mx-auto px-8">
 				<div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
 					<div>
 						<h4 className="text-[16px] font-bold mb-6">Categories</h4>
 						<ul className="space-y-4">
 							{[
-								"Video Integration",
-								"Live Streaming",
-								"Social Posts",
-								"Podcast Features",
-								"Community Events",
+								"Facebook",
+								"Instagram",
+								"Instagram",
+								"TikTok",
 							].map((item) => (
 								<li
 									key={item}
@@ -94,6 +93,16 @@ export default function Footer() {
 							)}
 						</ul>
 					</div>
+				</div>
+			</div>
+			{/* copyright */}
+			<div className="max-w-[1400px] mx-auto px-8">
+				<div className="flex justify-between items-center pt-8 pb-2 border-t">
+					<div className="flex items-center gap-4">
+						<img src="/logo.svg" alt="logo" className="w-8 h-8" />
+						<h1 className="text-2xl font-bold">Promise Bond</h1>
+					</div>
+					<p className="text-[14px]">&copy; 2025 Promise Bond. All rights reserved.</p>
 				</div>
 			</div>
 		</footer>
