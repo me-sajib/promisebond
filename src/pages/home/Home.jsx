@@ -472,24 +472,7 @@ const Home = () => {
 							</button>
 						</div>
 
-						<div className="hidden lg:block mt-6 flex items-center gap-3 text-[12px]">
-							Popular:
-							<div className="flex gap-3">
-								{[
-									"YouTube",
-									"Facebook",
-									"Instagram",
-									"TikTok",
-								].map((tag) => (
-									<button
-										key={tag}
-										className="px-3 py-1 border border-white text-gray-800 rounded-[20px] hover:bg-white/10 transition-colors"
-									>
-										{tag}
-									</button>
-								))}
-							</div>
-						</div>
+
 						<section className="mt-10 items-end hidden lg:block">
 							<div className="max-w-[1400px] mx-auto px-8">
 								<div className="flex items-center justify-center gap-x-12">
@@ -510,7 +493,7 @@ const Home = () => {
 					</div>
 				</div>
 			</header>
-			<Categories />
+			{/* <Categories /> */}
 
 			{/* Professional Services */}
 			{/* <section className="py-16 bg-gray-50">

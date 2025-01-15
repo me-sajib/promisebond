@@ -1,12 +1,32 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import RegisterModal from "./RegisterModal";
 
 
 
 export function ModalLogin() {
 	const [display, setDisplay] = useState("login");
 	const users = JSON.parse(localStorage.getItem('users') || '[]');
+	const [userInfo, setUserInfo] = useState({ name: "", email: "", firstName: "", lastName: "", location: "Australia" });
+	const [registerInfo, setRegisterInfo] = useState({ FirstName: "", lastName: "", location: "Australia" });
+
+
+	const handleCloseModal = () => {
+		setModalOpen(false);
+		window.location.href = "/";
+	};
+
+	const handleInfo = (e) => {
+		setUserInfo({ firstName: firstName, lastName: lastName, location: "Australia" });
+		localStorage.setItem('currentUser', JSON.stringify({ name: firstName, email: email, role: "issuer" }));
+		localStorage.setItem("users", JSON.stringify([...users, { name: firstName, email: email, role: "issuer" }]));
+
+		setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+		setRegisterInfo({ ...registerInfo, [e.target.name]: e.target.value });
+
+	};
+
 	const responseMessage = (response) => {
 		const { credential } = response;
 		console.log(response)
@@ -30,6 +50,45 @@ export function ModalLogin() {
 		}
 
 	};
+
+	const [isModalOpen, setModalOpen] = useState(false);
+	const [userData, setUserData] = useState({
+		firstName: "John",
+		lastName: "Doe",
+		location: "United States",
+	});
+
+	const SignupLogin = () => {
+
+		setModalOpen(true);
+
+		const { credential } = response;
+		console.log(response)
+		const parts = credential.split('.');
+		const decodedPayload = atob(parts[1]);
+
+		const parsedPayload = JSON.parse(decodedPayload);
+		console.log("response", parsedPayload)
+		const { name, email } = parsedPayload
+		setUserInfo({ name, email, role: "issuer" });
+
+		// localStorage.setItem('currentUser', JSON.stringify({ name, email, role: "issuer" }));
+		// localStorage.setItem("users", JSON.stringify([...users, { name, email, role: "issuer" }]));
+		// window.location.href = "/";
+
+
+		const { exp } = parsedPayload;
+		const currentTime = Math.floor(Date.now() / 1000);
+
+		if (exp && currentTime >= exp) {
+			console.log('Token has expired. Perform logout action.');
+		} else {
+			console.log('Token is still valid.');
+		}
+
+	};
+
+
 	const errorMessage = (error) => {
 		console.log(error);
 	};
@@ -47,7 +106,12 @@ export function ModalLogin() {
 					{/* Modal panel */}
 					<div className=" w-full max-w-5xl overflow-hidden bg-white rounded-lg shadow-sm">
 
-
+						<RegisterModal
+							isOpen={isModalOpen}
+							handleInfo={handleInfo}
+							onClose={handleCloseModal}
+							userData={userData}
+						/>
 						<div className="grid md:grid-cols-2">
 							{/* Left side - Success content */}
 							<div className=" bg-[#8B3A46] p-8 text-white">
@@ -133,15 +197,15 @@ export function ModalLogin() {
 							</div>
 								:
 								<div className="p-8">
-									<div className="max-w-sm mx-auto">
+									<div className="max-w-sm mx-auto z-0">
 										<h1 className="text-2xl font-semibold mb-2">Create a new account</h1>
 										<p className="text-sm text-gray-600 mb-8">
 											Already have an account? <button onClick={() => setDisplay("login")} className="text-blue-600 underline pointer">Sign in</button>
 										</p>
 
-										<div className="space-y-4">
+										<div className="space-y-4 z-0">
 											{/* Google login */}
-											<GoogleLogin width={"383px"} onSuccess={responseMessage} onError={errorMessage} />
+											<GoogleLogin width={"383px"} onSuccess={SignupLogin} onError={errorMessage} />
 
 
 
