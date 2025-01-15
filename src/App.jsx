@@ -42,7 +42,7 @@ function App() {
 
     return (
         <div className='bg-gray-50'>
-            <GoogleOAuthProvider clientId="95776282972-osqij3dvhkadk1d0kmneipl9erljevgn.apps.googleusercontent.com">
+            <GoogleOAuthProvider clientId="14826925454-8dsds57460ncl07o6g3tcepjbgts4tel.apps.googleusercontent.com">
                 <Navbar />
                 <ParentContext.Provider value={{ values, setValues }}>
                     {content}

@@ -70,13 +70,18 @@ const Navbar = () => {
 								>
 									{item.name}
 								</Link>
-
 							</>
 						))}
 
 						{/* Auth Buttons */}
 						{user ? (
 							<>
+								<Link
+									to="/dashboard"
+									className="text-gray-700 hover:text-primary-500"
+								>
+									Dashboard
+								</Link>
 								<button onClick={handleLogout}>Sign off</button>
 							</>
 						) : (

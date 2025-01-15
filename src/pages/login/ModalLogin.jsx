@@ -1,11 +1,13 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
+import ReactFacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 
 
 
 export function ModalLogin() {
 	const [display, setDisplay] = useState("login");
+	const users = JSON.parse(localStorage.getItem('users') || '[]');
 	const responseMessage = (response) => {
 		const { credential } = response;
 		console.log(response)
@@ -16,7 +18,8 @@ export function ModalLogin() {
 		console.log("response", parsedPayload)
 		const { name, email } = parsedPayload
 
-		localStorage.setItem('currentUser', JSON.stringify({ name, email }));
+		localStorage.setItem('currentUser', JSON.stringify({ name, email, role: "issuer" }));
+		localStorage.setItem("users", JSON.stringify([...users, { name, email, role: "issuer" }]));
 		window.location.href = "/";
 		const { exp } = parsedPayload;
 		const currentTime = Math.floor(Date.now() / 1000);
@@ -72,14 +75,7 @@ export function ModalLogin() {
 										</li>
 									</ul>
 								</div>
-								<div className="absolute inset-0 z-0">
-									{/* <img
-										src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/need%20this%20login%20home%20page.PNG-B53vztvaDxVj3HQvwkvWa94LfQzZrv.png"
-										alt="Person working on laptop"
-										fill
-										className="object-cover opacity-40"
-									/> */}
-								</div>
+
 							</div>
 
 							{/* Right side - Login form */}
@@ -98,7 +94,7 @@ export function ModalLogin() {
 
 										{/* Divider */}
 										<div className="relative">
-											<div className="absolute inset-0 flex items-center">
+											<div className="">
 												<div className="w-full border-t border-gray-300"></div>
 											</div>
 											<div className="relative flex justify-center text-xs uppercase">
@@ -114,6 +110,13 @@ export function ModalLogin() {
 												</svg>
 												<span className="text-gray-700">Apple</span>
 											</button>
+											{/* <ReactFacebookLogin
+												appId="3949399928712931"
+												fields="name,email,picture"
+												// callback={responseFacebook}
+												cssClass="my-facebook-button-class"
+												icon="fa-facebook"
+											/> */}
 											<button className="flex items-center justify-start gap-3 h-12 px-4 border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 												<svg className="h-5 w-5" viewBox="0 0 24 24" fill="#1877F2">
 													<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
