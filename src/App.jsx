@@ -4,6 +4,7 @@ import routes from './router/routes'
 import { createContext, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const ParentContext = createContext();
 
@@ -41,11 +42,14 @@ function App() {
 
     return (
         <div className='bg-gray-50'>
-            <Navbar />
-            <ParentContext.Provider value={{ values, setValues }}>
-                {content}
-            </ParentContext.Provider>
-            {pathname !== '/dashboard' && <Footer />}
+            <GoogleOAuthProvider clientId="95776282972-osqij3dvhkadk1d0kmneipl9erljevgn.apps.googleusercontent.com">
+                <Navbar />
+                <ParentContext.Provider value={{ values, setValues }}>
+                    {content}
+                </ParentContext.Provider>
+                {pathname !== '/dashboard' && <Footer />}
+
+            </GoogleOAuthProvider>
         </div>
     )
 }

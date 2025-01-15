@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X, ChevronDown, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { googleLogout } from "@react-oauth/google";
 
 const Navbar = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ const Navbar = () => {
 
 	const handleLogout = () => {
 		localStorage.removeItem("currentUser");
+		googleLogout();
 		window.location.href = "/";
 	};
 
@@ -75,7 +77,7 @@ const Navbar = () => {
 						{/* Auth Buttons */}
 						{user ? (
 							<>
-								<button>Sign off</button>
+								<button onClick={handleLogout}>Sign off</button>
 							</>
 						) : (
 							<>
