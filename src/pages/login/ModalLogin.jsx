@@ -1,6 +1,5 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
-import ReactFacebookLogin from "react-facebook-login";
 import { Link } from "react-router-dom";
 
 
